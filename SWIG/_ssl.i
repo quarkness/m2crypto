@@ -264,16 +264,6 @@ void ssl_init(PyObject *ssl_err, PyObject *ssl_timeout_err) {
     _ssl_timeout_err = ssl_timeout_err;
 }
 
-#ifndef OPENSSL_NO_SSL3
-const SSL_METHOD *sslv3_method(void) {
-#if OPENSSL_VERSION_NUMBER >= 0x10100000L
-    PyErr_WarnEx(PyExc_DeprecationWarning,
-                 "Function SSLv3_method has been deprecated.", 1);
-#endif
-    return SSLv3_method();
-}
-#endif
-
 const SSL_METHOD *tlsv1_method(void) {
 #if OPENSSL_VERSION_NUMBER >= 0x10100000L
     PyErr_WarnEx(PyExc_DeprecationWarning,
